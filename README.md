@@ -10,17 +10,16 @@ Prepare the wiring below before starting mechanical assembly. Keep the battery d
 
 ![M7 rover power distribution](Media/m7_power_path.png)
 
-The image above shows the simplified power path. Use the Rev C wiring diagram below for the kill switch and individual connections. Its connection numbering differs from the wire labels in the overview.
+The image above shows the simplified power path. Use the Rev D wiring diagram below for individual connections. The overview wire labels differ from the Rev D harness wire IDs.
 
 ### Wiring Diagram
 
-![M7 rover wiring diagram - Rev C](Media/m7_wiring_revC.png)
+![M7 rover wiring diagram - Rev D](Media/m7_wiring_revD.png)
 
 ### Battery and 12 V Supply
 
 - Prepare the XT60 battery connection for the 6S LiPo battery (22.2 V nominal, 25.2 V fully charged), leaving the battery unplugged.
-- Connect the XT60 positive lead to the kill switch input.
-- Connect the kill switch output to the positive terminal of the battery-voltage bus.
+- Connect the XT60 positive lead directly to the positive terminal of the battery-voltage bus.
 - Connect the XT60 negative lead to the bus ground terminal.
 - Connect the bus positive and ground terminals to VIN and GND on the Pololu D24V150F12 converter.
 - Connect the converter's 12 V output and GND to the input pair of the 12 V terminal block.
@@ -28,10 +27,11 @@ The image above shows the simplified power path. Use the Rev C wiring diagram be
 ### 12 V Devices
 
 - Connect one 12 V output pair from the terminal block to the Unitree L2 LiDAR power input and GND.
-- Connect another output pair to the Jetson Orin Nano DC barrel jack, matching the jack polarity.
+- Connect another output pair to the Jetson Orin Nano DC barrel jack: +12 V to the centre pin and GND to the sleeve.
 - Connect the motor branch's positive terminal to INA260 VIN+.
 - Connect INA260 VIN- to the U2D2 Power Hub's 12 V input.
 - Connect the terminal block ground directly to the Power Hub GND. INA260 VIN- is the motor supply output, not ground.
+- Use the Power Hub screw-terminal power input. Leave its DC jack and Molex power input unconnected.
 - Connect the remaining 12 V output pair to VIN and GND on the Pololu D24V50F5 converter.
 
 ### Cooling Fans
@@ -74,20 +74,20 @@ The image above shows the simplified power path. Use the Rev C wiring diagram be
 ### LiDAR and Cameras
 
 - Connect the Unitree L2 LiDAR Ethernet port to the Jetson Ethernet port.
-- Set the Jetson Ethernet interface to the static address `192.168.1.2/24` for the Rev C configuration. The LiDAR address is `192.168.1.62`.
+- Set the Jetson Ethernet interface to the static address `192.168.1.2/24` for the Rev D configuration. The LiDAR address is `192.168.1.62`.
 - Connect each RealSense camera to the Jetson using its USB cable.
 - Plug the USB cable into each camera and route it into the chassis before seating and fastening its camera mast.
 
 ### Before Powering On
 
-- Check connector polarity, terminal tightness, and the wiring against the Rev C diagram.
-- Resolve the Rev C review items before first power-up: select a battery fuse to suit the wiring, and address motor-induced voltage dips on the shared Jetson supply.
+- Check connector polarity, terminal tightness, and the wiring against the Rev D diagram.
+- Resolve the Rev D review items before first power-up: select a battery fuse to suit the wiring, and address motor-induced voltage dips on the shared Jetson supply.
 - Verify the converter outputs are 12 V and 5 V with the loads disconnected, then disconnect power before attaching the loads.
-- Remember that the main kill switch cuts power to the Jetson as well as the motors.
+- Keep the XT60 connector accessible. Unplugging it disconnects battery power from the rover, including the Jetson and motors.
 
 ### Sensor Check
 
-After mounting the electronics and completing the wiring, power the rover and check the sensors using the Rev C bus assignments:
+After mounting the electronics and completing the wiring, power the rover and check the sensors using the Rev D bus assignments:
 
 - Check the INA260 on bus 7 at address `0x40` with `sudo i2cdetect -y -r 7`.
 - Check the BNO085 on bus 1 at address `0x4A` with `sudo i2cdetect -y -r 1`.
