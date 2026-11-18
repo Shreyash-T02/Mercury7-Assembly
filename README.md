@@ -10,8 +10,7 @@ Prepare the wiring below before starting mechanical assembly. Keep the battery d
 
 ![M7 rover power distribution](Media/m7_power_path.png)
 
-The image above shows the simplified power path. Use the Rev D wiring diagram below for individual connections. The overview wire labels differ from the Rev D harness wire IDs.
-
+The image above shows the simplified power path. Use the wiring diagram below for individual connections.
 ### Wiring Diagram
 
 ![M7 rover wiring diagram - Rev D](Media/m7_wiring_revD.png)
@@ -24,7 +23,7 @@ The image above shows the simplified power path. Use the Rev D wiring diagram be
 - Connect the bus positive and ground terminals to VIN and GND on the Pololu D24V150F12 converter.
 - Connect the converter's 12 V output and GND to the input pair of the 12 V terminal block.
 
-### 12 V Devices
+### 12 V Peripherals
 
 - Connect one 12 V output pair from the terminal block to the Unitree L2 LiDAR power input and GND.
 - Connect another output pair to the Jetson Orin Nano DC barrel jack: +12 V to the centre pin and GND to the sleeve.
@@ -71,17 +70,10 @@ The image above shows the simplified power path. Use the Rev D wiring diagram be
 | SDA | 27 | I2C0 SDA |
 | SCL | 28 | I2C0 SCL |
 
-### LiDAR and Cameras
-
-- Connect the Unitree L2 LiDAR Ethernet port to the Jetson Ethernet port.
-- Set the Jetson Ethernet interface to the static address `192.168.1.2/24` for the Rev D configuration. The LiDAR address is `192.168.1.62`.
-- Connect each RealSense camera to the Jetson using its USB cable.
-- Plug the USB cable into each camera and route it into the chassis before seating and fastening its camera mast.
 
 ### Before Powering On
 
-- Check connector polarity, terminal tightness, and the wiring against the Rev D diagram.
-- Resolve the Rev D review items before first power-up: select a battery fuse to suit the wiring, and address motor-induced voltage dips on the shared Jetson supply.
+- Check connector polarity, terminal tightness, and the wiring against the diagram.
 - Verify the converter outputs are 12 V and 5 V with the loads disconnected, then disconnect power before attaching the loads.
 - Keep the XT60 connector accessible. Unplugging it disconnects battery power from the rover, including the Jetson and motors.
 
@@ -95,7 +87,7 @@ After mounting the electronics and completing the wiring, power the rover and ch
 
 ---
 
-## Step-by-Step Assembly Instructions
+## Mechanical Assembly Instructions
 
 ### Prepare the Parts
 
